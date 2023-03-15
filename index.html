@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bun Taxonomy Prototype</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Bevan|Droid+Serif" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Cormorant:300i,400i,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato|Oswald" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Myeongjo" rel="stylesheet">
+  <style>
+  * {box-sizing: border-box}
+  body {font-family: georgia, serif; margin:0}
+  .mySlides {display: none}
+  img {vertical-align: middle;}
+
+  /* Slideshow container */
+  .slideshow-container {
+    padding-top: 10vh;
+    width: 95vw;
+    position: relative;
+    margin: auto;
+  }
+
+  /* Next & previous buttons */
+  .prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: red;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }
+
+  /* Caption text */
+  .text {
+    color: black;
+    font-size: 28px;
+    /*padding: 8px 12px;*/
+    padding-bottom: 6vh;
+    width: 100%;
+    text-align: center;
+  }
+
+  /* The dots/bullets/indicators */
+  .dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 6px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+
+  /* On smaller screens, decrease text size */
+  @media only screen and (max-width: 300px) {
+    .prev, .next,.text {font-size: 11px}
+  }
+  </style>
+</head>
+
+<!-- Attempt at making it full screen lock
+ --><!-- <body style="height: 100%; width: 100%; margin: 0;">
+ -->  
+  <!-- <div class="topBar">
+      <span class="title">
+      	<img src="/images/header2.png" alt="image of header" style="width: 30vw;"">
+  	  </span>
+  	<span class="subTitle">A community-based art project bringing stories from Chinatown residents to local storefronts. Through a series of workshops with local community groups, Think!Chinatown recorded stories related to everyday objects found in Chinatown. Our hope is that these stories open a tiny window into parts of this neighborhood its communities that might be interesting or new — whether you are just visiting, or your family as been here for years.</span>
+  </div>
+ -->
+
+<!-- Image Headers (this works) -->
+<!--   <img id="englishSiteT" src="images/headerOpart3eE2.png" alt="NYT header" style="width: 100vw;">
+  <img id="cantoneseSiteT" src="images/headerOpart3eC.png" alt="NYT header" style="display: none; width: 100vw;">
+  <img id="mandarinSiteT" src="images/headerOpart3eM.png" alt="NYT header" style="display: none; width: 100vw;"> -->
+   
+  <img id="searchBar" src="images/headerOpart4e.png" alt="NYT header" style="width: 100vw;">
+
+  <div id="englishSiteT" class="title">Op-Art: Stories in Chinatown, Hiding In Plain Sight
+  </div>
+
+  <div id="cantoneseSiteT" class="title" style="display: none;">Op-Art: 在唐人街會找到的東西，和他們的故事
+  </div>
+
+  <div id="mandarinSiteT" class="title" style="display: none;">Op-Art: 在唐人街会找到的东西，和他们的故事
+  </div>
+
+  <div class="lButtons">
+    <div class="lButton" id="lCanto">粵語</div>
+    <div class="lButton" id="lEng">ENG</div>
+    <div class="lButton" id="lMando">国语</div>
+  </div>
+  
+  <hr style="width:73vw; margin: 0 auto;">
+
+  <img id="nyclocater" src="images/nycLocater.png" alt="Locater Map" style="padding-top: 4vh; width: 19vw; margin: 0 auto; display: block; align-content: center; ">
+
+  <div id="englishSite1" class="introText"> In TK year, the population of foreign-born residents in Chinatown was TK number. Now, TK years later new businesses, real estate developments, and wealthy newcomers are shifting the cultural balance of the neighborhood. Despite Chinatown's changes, it remains a cultural hub for Chinese and Chinese Americans within the five boroughs and beyond. Inside the homes and businesses of this neighborhood, you will still find objects that tell stories about the experience of immigration and adaptation in one of Manhattan’s last, vibrant immigrant communities. Hopefuly, these objects open a tiny window into parts of Chinatown and its communities that might be interesting or new — whether someone is just visiting, or their family as been in the neighborhood for decades.
+  </div>
+
+  <div id="cantoneseSite1" class="introText" style="display: none;">在TK年，華埠有TK居民出生於國外。如今，TK年後，新的企業，房地產開發和富裕的入住者正在改變著華埠的人文構成。儘管華埠經歷了巨大的變化，它仍然是中國人和華裔在紐約五個行政區內外的文化中心。作為曼哈頓僅存且生機勃勃的移民社區之一，大街小巷之間，你依然可以找到一些訴說著移民經歷與融入過程的物件。不管是來去匆匆的遊客，還是長久居住在這兒的家庭，希望這些物件可以展現出華埠社區有趣或新穎的一面。
+  </div>
+
+  <div id="mandarinSite1" class="introText" style="display: none;">在TK年，华埠有TK居民出生于国外。如今，TK年后，新的企业，房地产开发和富裕的入住者正在改变着华埠的人文构成。尽管华埠经历了巨大的变化，它仍然是中国人和华裔在纽约五个行政区内外的文化中心。作为曼哈顿仅存且生机勃勃的移民社区之一，大街小巷之间，你依然可以找到一些诉说着移民经历与融入过程的物件。不管是来去匆匆的游客，还是长久居住在这儿的家庭，希望这些物件可以展现出华埠社区有趣或新颖的一面。
+  </div>
+
+  <hr style="width:41vw; margin: 0 auto;">
+
+  <div id="playerContainer"></div>
+   
+  <div class="slideshow-container">
+
+  <div class="mySlides" id="bag">
+    <div class="text">Plaid Nylon Bag</div>
+    <div class="imageBack">
+     <img src="images/bagWide3.jpg" style="width:100%">
+    </div>
+  </div>
+
+  <div class="mySlides" id="bagua">
+    <div class="text">Feng Shui Mirror</div>
+    <img src="images/baguaWide3.jpg" style="width:100%">
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  </div>
+  <br>
+
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span> 
+    <span class="dot" onclick="currentSlide(2)"></span> 
+  </div>
+
+<div id="englishSite2">
+  <!-- <div id="playerContainer" class="listenEng"></div> -->
+  <div class="button" id="listenEng">LISTEN</div>
+  <hr style="width:41vw; margin: 0 auto;">
+  <div class="outroText">These objects and stories were collected through a series of workshops held with local community groups — organized by Aaron Reiss, while volunteering and working with Think!Chinatown, a local arts-based non-profit. At the end of the workshop series, the objects were displayed in street-facing windows of small businesses all over Chinatown, and passerbys could call in to hear the stories.
+  </div>
+</div>
+
+<div id="cantoneseSite2" style="display: none;">
+  <!-- <div id="playerContainer" class="listenCanto"></div> -->
+  <div class="button" id="listenCanto">聽一下</div>
+  <hr style="width:41vw; margin: 0 auto;">
+  <div class="outroText">這些故事和物件是在一系列社區團體舉辦的活動中採集的。採集者是當地非盈利藝術組織Think！Chinatown的志願者Aaron Reiss。在這系列的活動結束之後，這些物品曾在華埠各個小商店的街邊玻璃櫥櫃中被展出。路上的行人可以通過電話連線聽取這些故事。
+  </div>
+</div>
+
+<div id="mandarinSite2" style="display: none;">
+  <!-- <div id="playerContainer" class="listenMando"></div> -->
+  <div class="button" id="listenMando">听一下</div>
+  <hr style="width:41vw; margin: 0 auto;">
+  <div class="outroText">这些故事和物件是在一系列社区团体举办的活动中采集的。采集者是当地非盈利艺术组织Think！Chinatown的志愿者Aaron Reiss。在这系列的活动结束之后，这些物品曾在华埠各个小商店的街边玻璃橱柜中被展出。路上的行人可以通过电话连线听取这些故事。
+  </div>
+</div>
+ 	
+ 	<!-- Interactions Click Listener try 1 - audio player -->
+    <div style="display:none;" id="audioDiv"> 
+        <audio id="player" controls="controls">
+          <source id="audioFill" src=""/>
+         <!--  <track label="English" kind="subtitles" srclang="en" src="vtt/1listenEng.vtt" default>
+           Your browser does not support the audio element. -->
+        </audio>
+       <!--  <video width="320" height="240" controls>
+        <source id="audioFill" src="" type="audio/mpeg"> -->
+        <!-- Your browser does not support my busted-ass atempt to hack audio into a video element... 不好意思. -->
+        <!-- </video> -->
+    </div>
+  
+  <!--  jQuery from web-->  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!--   jQuery local-->  
+     <!-- <script src="js/jquery-3.2.0.min.js"></script>   -->
+  <!-- My Script -->
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+          var i;
+          var slides = document.getElementsByClassName("mySlides");
+          var dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+              dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+
+    </script>
+    <script src="js/script.js" defer></script>
+    <script type="text/javascript" src="js/captionator-min.js"></script>
+    <script type="text/javascript">
+      window.addEventListener("load",function(eventData) {
+        captionator.captionify();
+      });
+</script> 
+</body>
+</html>
+
+<style>
+  * {
+    /*border: 1px solid red;*/
+    padding: 0;
+    margin: 0;
+  }
+
+  .img-wrap {
+    /*background: black;*/
+    padding-top: 6vh;
+    padding-bottom: 9vh;
+    /*margin: 6vh;*/
+  }
+  
+/*  .main {
+    width: 90vw;
+    margin: 0 auto;
+  }*/
+  
+  .buttons, .lButtons {
+    margin: 0 38vw;
+    display: grid;
+    grid-template-columns: 3fr 3fr 3fr;
+    grid-column-gap: 10%;
+    grid-column-end: 10%;
+    padding-bottom: 7vh;
+    padding-top: 1vh;
+    /*display: flex;*/
+  }
+
+  .outroText{
+    padding-top: 6vh; 
+    padding-bottom: 25vh;
+    font-family: georgia,"times new roman",times,serif;
+    font-size: 15px;
+    line-height: 1.5;
+    width: 40vw;
+    color: #333;
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  .button {
+    background-color: white;
+    font-size: 21pt;
+    border: 4px solid black;
+    text-align: center;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    padding: 2vh 0;
+    letter-spacing: 1px;
+    cursor: pointer;
+    /* display: inline-block; */
+    width: 104px;
+    margin: 12px auto;
+    margin-bottom: 50px;
+  }
+
+  .lButton {
+    font-size: 10pt;
+    border: 1px solid black;
+    text-align: center;
+    font-family: georgia,"times new roman",times,serif;
+    font-weight: 200;
+    padding: 1.5vh 0vw;
+    letter-spacing: 1px;
+    cursor: pointer;
+    line-height: 2.5vh;
+    /*display: inline-block;*/
+    /*width: 33%;*/
+  }
+
+  .button:hover {
+	    border: 4px solid white;
+      background-color: #feda5d;
+	    color: white;
+	    outline-offset: -5px;
+	    /*border-bottom: 3px solid #feda5d;*/
+	}
+
+  .lButton:hover {
+      background-color: #feda5d;
+      color: white;
+      border: 1px solid white;
+      outline-offset: -5px;
+      /*border-bottom: 3px solid #feda5d;*/
+  }
+
+	.active {     
+	    background-color: #feda5d;
+	    color: white;
+	    outline:0;
+	}
+
+  .topBar {
+  	background: blue;
+    margin: 6vh auto;
+  }
+  
+  .subTitle {
+  	background: yellow;
+    font-family: 'Lato', sans-serif;
+    font-size: 8pt;
+    margin: 0 auto;
+  }
+
+  .introText{
+    font-family: georgia,"times new roman",times,serif;
+    font-size: 15px;
+    line-height: 1.5;
+    width: 40vw;
+    color: #333;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 1vh; 
+    padding-bottom: 8vh;
+  }
+
+  hr{
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .oName {
+    font-family: georgia,"times new roman",times,serif;
+    font-size: 17px;
+    line-height: 1.5;
+    color: #333;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 10vh
+  }
+
+  .prev, .next {
+    cursor: pointer;
+    /*position: absolute;*/
+    top: 54%;
+    /*width: auto;*/
+    padding: 43px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 42px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+  }
+
+  .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+  }
+
+.title{
+  font-weight: 200; 
+  font-style: normal;
+  line-height: 1.1; 
+  margin: 0 auto;
+  width: 66vw;
+  font-size: 55px; 
+  font-family: 'Nanum Myeongjo', serif;
+  /*font-family: "nyt-cheltenham",georgia,"times new roman",times,serif;*/
+  text-align: center; 
+  padding-top: 1vh; 
+  padding-bottom: 4vh;
+}
+
+.circle-audio-player {
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+}
+#playerContainer {
+  padding: 24px;
+}
+
+</style>
